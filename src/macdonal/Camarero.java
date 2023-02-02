@@ -15,9 +15,15 @@ public class Camarero implements Runnable{
 
         try {
 
-            
+            while(mac.cocinaAbierta){
+
+                mac.cocinar(this);
+            }
+
+
         }catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
 
 
