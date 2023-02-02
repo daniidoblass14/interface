@@ -3,6 +3,7 @@ package macdonal;
 public class Camarero implements Runnable{
 
     Macdonal mac;
+    String pedido;
     public Camarero(Macdonal mac) {
 
         this.mac = mac;
@@ -14,11 +15,6 @@ public class Camarero implements Runnable{
         // TODO Auto-generated method stub
 
         try {
-
-            while(mac.cocinaAbierta){
-
-                mac.cocinar(this);
-            }
 
 
         }catch (Exception e) {

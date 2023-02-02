@@ -6,8 +6,6 @@ public class Principal {
         // TODO Auto-generated method stub
 
         Macdonal mac = new Macdonal();
-        Thread camarero = new Thread(new Camarero(mac));
-        camarero.start();
 
         for (int i = 1; i <= 4; i++) {
 
@@ -15,6 +13,8 @@ public class Principal {
             cliente.start();
         }
 
+        Thread camarero = new Thread(new Camarero(mac));
+        camarero.start();
     }
 
 }

@@ -22,12 +22,12 @@ public class Macdonal {
         colaPedido.add(nombre);
     }
 
-    public synchronized void pedir(Cliente cliente, String nombre){
+    public synchronized void pedir(Cliente cliente, String nombre) {
         // TODO Auto-generated method stub
 
         try {
 
-            while(!colaPedido.get(0).equals(nombre)) {
+            while (!colaPedido.get(0).equals(nombre)) {
                 Colores.imprimirRojo(nombre + " se queria colar");
                 wait();
             }
@@ -38,7 +38,7 @@ public class Macdonal {
             Colores.imprimirVerde(nombre + " marcha a la cola para recoger su pedido");
             notifyAll();
 
-        }catch (Exception e ){
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
@@ -49,18 +49,17 @@ public class Macdonal {
     public synchronized void esperarPedido(Cliente cliente, String nombre) {
 
 
-            try {
-                while(!colaRecoger.get(0).equals(nombre)) {
-                    Colores.imprimirRojo(nombre + " se queria colar para esperar su pedido");
-                    wait();
-                }
-
-                Colores.imprimirVerde(nombre + " esperando....");
-                notifyAll();
-                Thread.sleep(6000);
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            while (!colaRecoger.get(0).equals(nombre)) {
+                Colores.imprimirRojo(nombre + " se queria colar para esperar su pedido");
+                wait();
             }
+
+            Colores.imprimirVerde(nombre + " esperando....");
+            notifyAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -68,17 +67,16 @@ public class Macdonal {
         // TODO Auto-generated method stub
 
         try {
-            while(!colaRecoger.get(0).equals(nombre)){
-
+            while (!colaRecoger.get(0).equals(nombre)) {
+                System.out.println(nombre + "esperando pedidoddddddddddddddddddd "+pedidoListo);
                 wait();
             }
-
             pedidoListo = false;
             Colores.imprimirVerde(nombre + " recogio su pedido correctamente y se fue.");
-            contadorPedidos--;
             colaRecoger.remove(0);
             notifyAll();
-        }catch (Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -88,16 +86,19 @@ public class Macdonal {
     public synchronized void cocinar(Camarero camarero) {
 
         try {
-
-            while (contadorPedidos == 0);{
+            System.out.println(contadorPedidos);
+            while (contadorPedidos == 0) {
                 Colores.imprimirRojo("esperando pedidos");
                 wait();
             }
-            System.out.println("Cocinando...");
+            Colores.imprimirAzul("Cocinando...");
             Thread.sleep(2000);
+            Colores.imprimirAmarillo("PEDIDO LISTO!!!");
             pedidoListo = true;
+            contadorPedidos--;
+            notifyAll();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

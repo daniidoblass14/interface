@@ -23,4 +23,7 @@ public class Colores {
     public static void imprimirVerde(String msg) {
         System.out.println(ANSI_GREEN + msg + ANSI_RESET);
     }
+    public static void imprimirAmarillo(String msg) {
+        System.out.println(ANSI_YELLOW + msg + ANSI_RESET);
+    }
 }
